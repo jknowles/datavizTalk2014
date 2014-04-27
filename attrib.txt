@@ -1,0 +1,4 @@
+# Image attribution
+
+- data.jpg : http://www.hopeworks.org/wp-content/uploads/2013/06/data.jpg
+- bully.gif http://www.lisahaney.com/ (lisahaney)
