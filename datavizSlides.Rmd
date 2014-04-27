@@ -1,27 +1,149 @@
 ---
-title: "Strategy, Leadership, and Narratives: Data Viz for Policy Change"
-date: May 7, 2014
-author: Jared E. Knowles
+title: 'Strategy, Leadership, and Narratives: Data Viz for Policy Change'
+author: "Jared E. Knowles"
+date: "May 7, 2014"
 output:
-  ioslides_presentation:
-     fig_width: 7
-     fig_height: 6
+  revealjs_presentation: default
+      
 ---
 
-## R Markdown
-Opinions about data visualization are everywhere and quick search online reveals thousands of resources to learn how to draw bar graphs and when a scatter plot might be effective. While getting the technical details right is important, it is merely the a necessary, but not sufficient, condition for driving change. In order to effectively use data in a decision making context, analysts must focus on knowing their audience, knowing the decision space, and leading their audience toward constructive engagement with the data. Using examples from senior leadership discussions at the Wisconsin Department of Public Instruction, this talk will explore how to build capacity in an audience and empower them to make decisions informed by analytics. A particular focus will be taken on the deliberate design choices an analyst must confront in order construct visualizations that are accessible and invite discussion. This includes strategies such as simulation, counterfactual modeling, and selection of context cues to bring the data into a familiar frame for the audience. The session will conclude with a brief discussion of practical advice on technologies, formats, and presentation techniques for different audience types.
 
-## Asset {.flexbox .vcenter}
+```{r knitrsetup,echo=FALSE,eval=TRUE,results="hide",error=FALSE,message=FALSE,warning=FALSE}
+library(knitr)
+opts_chunk$set(fig.width=8,fig.height=5.5,message=FALSE,error=FALSE,warning=FALSE,echo=TRUE,dev=c("svg"),comment=NA,out.width="750px",out.height="550px", fig.align='center')
+library(eeptools)
+library(ggplot2)
+library(ggthemes)
+#require('hexbin')
+#load("data/cache.rda")
+```
+
+
+## What do you want to say? {.flexbox .vcenter}
+
+![Wisconsin FRL Map](assets/evenFRLmap.gif)
+
+## Model fit {.flexbox .vcenter}
 
 ![EWS Plots](assets/ewsLITplot.png)
 
-## Asset {.vcenter}
-```{r fig.width=7, fig.height=6.5, fig.cap = "EWS Model Fit Plots", echo =FALSE, message=FALSE, warning=FALSE, fig.align='center'}
-library(png)
-library(grid)
-img <- readPNG("assets/ewsLITplot.png")
-grid.raster(img)
+
+## Of Metrics and Dashboards
+
+Widgets provide limited utility.
+
+![bad graph](assets/badinfographic.png)
+
+## The Struggle
+
+![technologies](assets/technologies.svg)
+
+## The First Directive {.build}
+
+> Know thy data, but know thy audience better. 
+
+- What is their question?
+- What is their timeframe?
+- What are their constraints?
+- What is their capacity?
+
+## Yabbut - too much data {.flexbox .vcenter}
+
+![data](assets/data.jpg)
+
+## Yabbut - too many priorities {.flexbox .vcenter}
+
+![too many](assets/bully.gif)
+
+## The Way Out {.build}
+
+  1. Identify your goals 
+  
+  2. Explore your data and focus
+  
+  3. Focus even narrower
+  
+  4. Find the context
+  
+  5. Put it together
+
+## Identify your goals
+
+What is the goal of this graphic? 
+
+![wordcloud](assets/d3wordcloud.png)
+
+## What did we learn?
+
+- The words `obviously` and `education` were used a lot
+- Some other words were frequent too
+- **what value have we provided?** 
+
+## Goals need not mean complex graphics
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+data(mtcars)
+qplot(hp, qsec, data=mtcars, geom="point") + theme_dpi() + 
+  geom_smooth()+  labs(x="Horsepower", y="Quart. Mile Time", 
+                       title="Horsepower and Speed for My Cars") + 
+  annotate(x = 320, y = 15.7, label ="Maserati", geom = "text") +
+  annotate(x = 260, y = 14, label ="Duster 360", geom = "text") +
+  annotate(x = 110, y = 22.4, label = "Merc 230", geom = "text") + 
+  geom_vline(xintercept = 220, linetype = 2) + 
+  geom_hline(yintercept = 16, linetype = 2)
 ```
+
+
+## What do we learn?
+
+- More power = faster times
+- Clear outliers are identified to enable discussion
+- Reference lines are provided to give audience orientation
+- A smoother is applied to show the general trend
+
+## Quote
+
+<p><q> How you turn dimensions in the <span class = 'red'>data</span> into visual 
+cues for your audience is everything.</q></p>
+
+
+## Balance is hard
+
+Term: Raw data 
+- Plot the points as is
+- Pros: easy to explain and interpret
+- Cons: does not scale well, insights not obvious
+
+Term: Summarize
+- Summarize the data and plot summaries
+- Pros: Meaningful summaries are efficient
+- Cons: More complex, summaries may skew important features
+
+Term: Model 
+- Model the data and show simulations or projections
+- Pros: Forces analysis to answer questions
+- Cons: Complex, difficult to convey results
+
+## How do we choose? 
+
+Identify our goals and make a lot of graphs.
+
+## Exploratory vs. Explanatory
+
+Exploratory graphics are what we use to understand the data. They are useful 
+for us to understand what is going on and where the key features of a 
+dataset are. 
+
+Explanatory graphics are polished and annotated graphics that provide the 
+viewer with information. Sometimes they are self-contained. 
+
+## Exploratory
+
+![explore student scores](assets/g3belowproficientreadingscores.png)
+
+## Explanatory
+
+![growth charts](assets/TESTstuplot.gif)
 
 ## Talk Outline
 
@@ -79,3 +201,17 @@ Table:  Demonstration of simple table syntax.
 
 Table: Here's the caption. It, too, may span
 multiple lines.
+
+
+## R Markdown
+Opinions about data visualization are everywhere and quick search online reveals thousands of resources to learn how to draw bar graphs and when a scatter plot might be effective. While getting the technical details right is important, it is merely the a necessary, but not sufficient, condition for driving change. In order to effectively use data in a decision making context, analysts must focus on knowing their audience, knowing the decision space, and leading their audience toward constructive engagement with the data. Using examples from senior leadership discussions at the Wisconsin Department of Public Instruction, this talk will explore how to build capacity in an audience and empower them to make decisions informed by analytics. A particular focus will be taken on the deliberate design choices an analyst must confront in order construct visualizations that are accessible and invite discussion. This includes strategies such as simulation, counterfactual modeling, and selection of context cues to bring the data into a familiar frame for the audience. The session will conclude with a brief discussion of practical advice on technologies, formats, and presentation techniques for different audience types.
+
+
+## Asset {.vcenter}
+```{r fig.width=7, fig.height=6.5, fig.cap = "EWS Model Fit Plots", fig.align='center'}
+library(png)
+library(grid)
+img <- readPNG("assets/ewsLITplot.png")
+grid.raster(img)
+```
+
