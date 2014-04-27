@@ -145,6 +145,59 @@ viewer with information. Sometimes they are self-contained.
 
 ![growth charts](assets/TESTstuplot.gif)
 
+## Don't Underestimate Your Audience
+
+- 1 polished detailed graph is better than 10 throwaway graphs
+- Provide context and remember your limits
+- Link your graphic to things leadership cares about
+
+## Context as Key
+
+- Education graphics are littered with plots without context
+- Context is what creates urgency, helps focus decision making, and 
+allows tradeoffs to be balanced
+
+## Attendance example
+
+```{r}
+attendsummary <- data.frame(year = 2008:2013, 
+                            att = c(97.7, 93.5, 92.6, 96.2, 96.4, 96.7), 
+                            sd = c(0.8, 1.2, 0.9, 0.95, 0.96, 1.2), 
+                            count = c(500, 460, 480, 490, 492, 460))
+qplot(factor(year), att, data = attendsummary, geom = 'bar', stat = 'identity') + 
+  labs(x = "Year", y = "Att. Rate", title = "Attendance Rate in School Over Time") + 
+  theme_dpi()
+
+```
+
+## Iterate
+
+```{r}
+
+qplot(factor(year), att, data = attendsummary, geom = 'bar', stat = 'identity', 
+      color = I("gray30"), fill = I("gray80")) + 
+  labs(x = "Year", y = "Att. Rate", title = "Attendance Rate in School Over Time") + 
+  theme_dpi() + geom_hline(yintercept = 95, linetype = 2, color = I("red"))
+
+```
+
+## Not bad 
+
+```{r}
+ggplot(attendsummary, aes(x = year, y = att, ymin = att - 1.8*sd, 
+                          ymax = att + 1.8*sd)) + 
+  geom_bar(stat = "identity", color = I("gray30"), fill = I("gray80")) +
+  geom_errorbar(width =0.4, color = I("red")) + ylim(c(0, 100)) + 
+  geom_hline(yintercept = 95, linetype = 2, color = I("red"))
+
+```
+
+## Context
+
+- Moves the conversation forward 
+- Focuses us on the issue at hand
+- Reduces complexity without throwing away data
+
 ## Talk Outline
 
 * Problem Statement
