@@ -239,3 +239,9 @@ grid.raster(img, interpolate = TRUE)
 <br>
 
 <p align="center"><img src="assets/knowleslogo.png"  style="display: block; margin:0 auto; height:auto; width:auto; max-width:350px; max-height:196px"></p>
+
+## Image Attribution
+
+- Paperwork: http://www.hopeworks.org/wp-content/uploads/2013/06/data.jpg
+- Directions: http://www.lisahaney.com/ (lisahaney)
+- Traffic: http://thishumanscondition.files.wordpress.com/2010/11/116643.jpg
