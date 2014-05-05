@@ -3,14 +3,13 @@ title: 'Strategy, Leadership, and Narratives: Data Viz for Policy Change'
 author: "Jared E. Knowles"
 date: "May 7, 2014"
 output:
-  revealjs_presentation: 
-     fig_caption: true
-     theme: night
-     center: true
-     transition: page
-     pandoc_args: [
-      " --include-in-header", "custom.css"
-    ]
+  revealjs_presentation:
+    fig_caption: yes
+    theme: night
+    transition: page
+    pandoc_args: [
+      "--include-in-header", "custom.css"
+      ]
 ---
 
 
@@ -23,56 +22,87 @@ library(png); library(jpeg)
 library(grid)
 ```
 
-## The First Directive {.build}
+## Outline
 
-> Know thy data, but know thy audience better. 
+- This talk will focus on 5 graphics as an illustration of the principals of 
+policy focused data visualization
+- Each example is taken from real policy discussions with senior leadership in 
+a state education agency
+- Together, these examples demonstrate how data visualization can be used to 
+inform policy and decision making
+- But first...
+
+## The Principles {.build}
+
+> Know thy data, and know thy audience better. 
+
+<br>
+<br>
 
 > - What is their *question*?
 > - What is their *timeframe*?
 > - What are their **constraints**?
 > - What is their **capacity**?
 
-## The Struggle
 
-```{r fig.cap = "Technology Choices in Viz", fig.align='center'}
-img <- readPNG("assets/technologies.png")
-grid.raster(img, interpolate = TRUE)
-```
+## On Audience
 
-## Yabbut - too much data {.flexbox .vcenter}
+> Your audience can understand much more than you may think. It is all in how 
+you lead them there. 
 
+## The Barriers
+
+- Time
+- Data
+- Tools
+- Tech
+
+## Yabbut - too much data 
 
 ```{r fig.cap = "Data is Everywhere", fig.align='center'}
 img <- readJPEG("assets/data.jpg")
 grid.raster(img, interpolate = TRUE)
 ```
 
-## Yabbut - too many priorities {.flexbox .vcenter}
 
-![too many](assets/bully.gif)
+## Yabbut - too many priorities
 
-## The Way Out {.build}
+![Too many competing priorities](assets/bully.gif)
 
-  1. Identify your goals 
-  2. Explore your data and focus
-  3. Focus even narrower
-  4. Find the context
-  5. Put it together
 
-## What do you want to say? {.flexbox .vcenter}
+## Unclear direction
+
+```{r fig.cap = "Data is Everywhere", fig.align='center'}
+img <- readJPEG("assets/traffic.jpg")
+grid.raster(img, interpolate = TRUE)
+```
+
+## The Way Out 
+
+1. Identify your goals (strategy)
+2. Explore your data and focus (analysis)
+3. Focus even narrower (leadership)
+4. Find the context (context)
+5. Put it together (presentation)
+<br>
+<br>
+
+Use the data to make a visualization that presents an argument supported by evidence. 
+
+## Strategy: What can this data say? 
 
 ![Wisconsin FRL Map](assets/evenFRLmap.gif)
 
 ## Of Metrics and Dashboards
 
-Widgets provide limited utility.
+Widgets provide limited connection to strategy.
 
 ```{r fig.cap = "Infographic, or confusion?", fig.align='center'}
 img <- readPNG("assets/badinfographic.png")
 grid.raster(img, interpolate = TRUE)
 ```
 
-## Identify your goals
+## Analyze your data to find the meaning
 
 What is the goal of this graphic? 
 
@@ -80,100 +110,20 @@ What is the goal of this graphic?
 
 ## What did we learn?
 
-- The words `obviously` and `education` were used a lot
-- Some other words were frequent too
-- **what value have we provided?** 
-
-## Goals need not mean complex graphics
-
-```{r echo=FALSE, warning=FALSE, message=FALSE}
-data(mtcars)
-qplot(hp, qsec, data=mtcars, geom="point") + theme_dpi() + 
-  geom_smooth()+  labs(x="Horsepower", y="Quart. Mile Time", 
-                       title="Horsepower and Speed for My Cars") + 
-  annotate(x = 320, y = 15.7, label ="Maserati", geom = "text") +
-  annotate(x = 260, y = 14, label ="Duster 360", geom = "text") +
-  annotate(x = 110, y = 22.4, label = "Merc 230", geom = "text") + 
-  geom_vline(xintercept = 220, linetype = 2) + 
-  geom_hline(yintercept = 16, linetype = 2)
-```
-
-## What do we learn?
-
-- More power = faster times
-- Clear outliers are identified to enable discussion
-- Reference lines are provided to give audience orientation
-- A smoother is applied to show the general trend
-
-```{r echo=FALSE, warning=FALSE, message=FALSE, fig.width = 4, fig.height=2.75}
-data(mtcars)
-qplot(hp, qsec, data=mtcars, geom="point") + theme_dpi() + 
-  geom_smooth()+  labs(x="Horsepower", y="Quart. Mile Time", 
-                       title="Horsepower and Speed for My Cars") + 
-  annotate(x = 320, y = 15.7, label ="Maserati", geom = "text") +
-  annotate(x = 260, y = 14, label ="Duster 360", geom = "text") +
-  annotate(x = 110, y = 22.4, label = "Merc 230", geom = "text") + 
-  geom_vline(xintercept = 220, linetype = 2) + 
-  geom_hline(yintercept = 16, linetype = 2) + 
-  theme(text = element_text(size = 10))
-```
-
-## Quote
-
-> How you turn dimensions in the <span class = 'red'>data</span> into visual 
-cues for your audience is everything.
-
-
-## Balance is hard
-
-Raw Data
-
-:   Plot the data as is - easy to explain, does not scale
-
-Summarize
-
-:   Calculate statistics on the data and plot, meaningful, may obscure important detail
-
-Model
-
-:   Model the data, analysis of specific questions is clear, harder to explain
-    
-## Test
-
-Term: Raw data 
-- Plot the points as is
-- Pros: easy to explain and interpret
-- Cons: does not scale well, insights not obvious
-
-Term: Summarize
-- Summarize the data and plot summaries
-- Pros: Meaningful summaries are efficient
-- Cons: More complex, summaries may skew important features
-
-Term: Model 
-- Model the data and show simulations or projections
-- Pros: Forces analysis to answer questions
-- Cons: Complex, difficult to convey results
+> - The words *obviously* and *education* were used a lot
+> - Some other words were frequent too
+> - **What value have we provided?** 
 
 ## Exploratory vs. Explanatory
 
 *Exploratory graphics* are what we use to understand the data. They are useful 
-for us to understand what is going on and where the key features of a 
-dataset are. 
+for us to understand what is going on and the key features of a dataset
 
-*Explanatory graphics* are polished and annotated graphics that provide the 
-viewer with information. Sometimes they are self-contained. 
+<br>
+<br>
 
-## Exploratory
-
-```{r fig.cap = "Looking at a Subset", fig.align='center'}
-img <- readPNG("assets/g3belowproficientreadingscores.png")
-grid.raster(img, interpolate = TRUE)
-```
-
-## Explanatory
-
-![growth charts](assets/TESTstuplot.gif)
+*Explanatory graphics* are polished and annotated graphics that convey a fact or 
+argument
 
 ## Exploratory
 
@@ -182,19 +132,51 @@ img <- readPNG("assets/cumlDENSmega91.png")
 grid.raster(img, interpolate = TRUE)
 ```
 
-## Summary
+## Explanatory
 
 ```{r fig.cap = "Cumulative Assessment Density", fig.align='center'}
 img <- readPNG("assets/cumlDENS97.png")
 grid.raster(img, interpolate = TRUE)
 ```
 
-## Models
+## What have we learned?
 
+- Strong link between ACT and WKCE scores
+- Not only does the mode shift with WKCE percentile, but the variation shifts as well
+- Low WKCE scores mean a low chance at meeting the ACT benchmark
+
+## An aside on complexity
+
+- Yes, these graphics are more complex
+- Explaining one complex graphic to the audience with a strong meaning is powerful
+- Many superficial graphics have a harder time conveying a strong message
+
+## Leadership means making the point clear
+
+![growth charts](assets/TESTstuplot.gif)
+
+## What did we learn?
+
+- Student mobility across proficiency categories is hard
+- Student growth is parallel across percentiles
+- Students regress as well as grow
+- Assessment measures can be noisy
+
+## Context
+ 
 ```{r fig.cap = "Showing Models", fig.align='center'}
 img <- readPNG("assets/ewsLITplot.png")
 grid.raster(img, interpolate = TRUE)
 ```
+
+## Context as Key
+
+- Education graphics are littered with plots without context
+- Context is what creates urgency, helps focus decision making, and 
+allows tradeoffs to be balanced
+- Moves the conversation forward 
+- Focuses us on the issue at hand
+- Reduces complexity without throwing away data
 
 ## Don't Underestimate Your Audience
 
@@ -202,51 +184,14 @@ grid.raster(img, interpolate = TRUE)
 - Provide context and remember your limits
 - Link your graphic to things leadership cares about
 
-## Context as Key
 
-- Education graphics are littered with plots without context
-- Context is what creates urgency, helps focus decision making, and 
-allows tradeoffs to be balanced
+## Some Solutions
 
-## Attendance example
-
-```{r}
-attendsummary <- data.frame(year = 2008:2013, 
-                            att = c(97.7, 93.5, 92.6, 96.2, 96.4, 96.7), 
-                            sd = c(0.8, 1.2, 0.9, 0.95, 0.96, 1.2), 
-                            count = c(500, 460, 480, 490, 492, 460))
-qplot(factor(year), att, data = attendsummary, geom = 'bar', stat = 'identity') + 
-  labs(x = "Year", y = "Att. Rate", title = "Attendance Rate in School Over Time") + 
-  theme_dpi()
-
+```{r fig.cap = "Technology Choices in Viz", fig.align='center'}
+img <- readPNG("assets/technologies.png")
+grid.raster(img, interpolate = TRUE)
 ```
 
-## Iterate
-
-```{r}
-qplot(factor(year), att, data = attendsummary, geom = 'bar', stat = 'identity', 
-      color = I("gray30"), fill = I("gray80")) + 
-  labs(x = "Year", y = "Att. Rate", title = "Attendance Rate in School Over Time") + 
-  theme_dpi() + geom_hline(yintercept = 95, linetype = 2, color = I("red"))
-
-```
-
-## Not bad 
-
-```{r}
-ggplot(attendsummary, aes(x = year, y = att, ymin = att - 1.8*sd, 
-                          ymax = att + 1.8*sd)) + 
-  geom_bar(stat = "identity", color = I("gray30"), fill = I("gray80")) +
-  geom_errorbar(width =0.4, color = I("red")) + ylim(c(0, 100)) + 
-  geom_hline(yintercept = 95, linetype = 2, color = I("red"))
-
-```
-
-## Context
-
-- Moves the conversation forward 
-- Focuses us on the issue at hand
-- Reduces complexity without throwing away data
 
 ## Simulation
 
@@ -257,73 +202,22 @@ grid.raster(img, interpolate = TRUE)
 
 ## Counterfactual Modeling
 
-
 ```{r fig.cap = "Density", fig.align='center'}
 img <- readPNG("assets/racegapgradFORAPRIL2014.png")
 grid.raster(img, interpolate = TRUE)
 ```
 
-## Talk Outline
-
-* Problem Statement
-  - Lots of data, lots of demand
-  - Limited time, space, and opportunity
-* Role of Leadership
-  - Be strategic in what you present
-  - Lead your audience -- analysis, not data
-* Tools
-  - Context
-  - Counterfactuals
-  - Simulation
-* Practical
-
-## Slide with R Code and Output | A subtitle
-
-<div class="red2">
-This text is red
-</div>
-
-```{r}
-summary(cars)
-```
-
-## Slide with Plot
-
-```{r, echo=FALSE}
-plot(cars)
-```
-
-## A Simple Table
-
- Right     Left     Center     Default
--------     ------ ----------   -------
-     12     12        12            12
-    123     123       123          123
-      1     1          1             1
-
-Table:  Demonstration of simple table syntax.
-
-## A multiline table
-
--------------------------------------------------------------
- Centered   Default           Right Left
-  Header    Aligned         Aligned Aligned
------------ ------- --------------- -------------------------
-   First    row                12.0 Example of a row that
-                                    spans multiple lines.
-
-  Second    row                 5.0 Here's another one. Note
-                                    the blank line between
-                                    rows.
--------------------------------------------------------------
-
-Table: Here's the caption. It, too, may span
-multiple lines.
 
 
-## R Markdown
-Opinions about data visualization are everywhere and quick search online reveals thousands of resources to learn how to draw bar graphs and when a scatter plot might be effective. While getting the technical details right is important, it is merely a necessary, but not sufficient, condition for driving change. In order to effectively use data in a decision making context, analysts must focus on knowing their audience, knowing the decision space, and leading their audience toward constructive engagement with the data. Using examples from senior leadership discussions at the Wisconsin Department of Public Instruction, this talk will explore how to build capacity in an audience and empower them to make decisions informed by analytics. A particular focus will be taken on the deliberate design choices an analyst must confront in order construct visualizations that are accessible and invite discussion. This includes strategies such as simulation, counterfactual modeling, and selection of context cues to bring the data into a familiar frame for the audience. The session will conclude with a brief discussion of practical advice on technologies, formats, and presentation techniques for different audience types.
+## Thank You and Contact Info
 
+- DEWS Homepage: [http://wise.dpi.wi.gov/wisedash_dews](http://wise.dpi.wi.gov/wisedash_dews)
+- E-mail: jared.knowles@dpi.wi.gov / jknowles@gmail.com
+- GitHub: [http://www.github.com/jknowles](http://www.github.com/jknowles)
+- Homepage: [www.jaredknowles.com](http://www.jaredknowles.com/)
+- Google+: [https://plus.google.com/+JaredKnowles](https://plus.google.com/+JaredKnowles)
 
-## Asset {.vcenter}
+<br>
+<br>
 
+<p align="center"><img src="assets/knowleslogo.png"  style="display: block; margin:0 auto; height:auto; width:auto; max-width:350px; max-height:196px"></p>

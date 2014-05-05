@@ -2,3 +2,153 @@
 
 - data.jpg : http://www.hopeworks.org/wp-content/uploads/2013/06/data.jpg
 - bully.gif http://www.lisahaney.com/ (lisahaney)
+- traffic.jpg http://thishumanscondition.files.wordpress.com/2010/11/116643.jpg
+  revealjs_presentation: 
+     fig_caption: true
+     theme: night
+     center: true
+     transition: page
+     pandoc_args: [
+      "--include-in-header", "custom.css"
+
+
+
+## Goals need not mean complex graphics
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+data(mtcars)
+qplot(hp, qsec, data=mtcars, geom="point") + theme_dpi() + 
+  geom_smooth()+  labs(x="Horsepower", y="Quart. Mile Time", 
+                       title="Horsepower and Speed for My Cars") + 
+  annotate(x = 320, y = 15.7, label ="Maserati", geom = "text") +
+  annotate(x = 260, y = 14, label ="Duster 360", geom = "text") +
+  annotate(x = 110, y = 22.4, label = "Merc 230", geom = "text") + 
+  geom_vline(xintercept = 220, linetype = 2) + 
+  geom_hline(yintercept = 16, linetype = 2)
+```
+
+## What do we learn?
+
+- More power = faster times
+- Clear outliers are identified to enable discussion
+- Reference lines are provided to give audience orientation
+- A smoother is applied to show the general trend
+
+```{r echo=FALSE, warning=FALSE, message=FALSE, fig.width = 4, fig.height=2.75}
+data(mtcars)
+qplot(hp, qsec, data=mtcars, geom="point") + theme_dpi() + 
+  geom_smooth()+  labs(x="Horsepower", y="Quart. Mile Time", 
+                       title="Horsepower and Speed for My Cars") + 
+  annotate(x = 320, y = 15.7, label ="Maserati", geom = "text") +
+  annotate(x = 260, y = 14, label ="Duster 360", geom = "text") +
+  annotate(x = 110, y = 22.4, label = "Merc 230", geom = "text") + 
+  geom_vline(xintercept = 220, linetype = 2) + 
+  geom_hline(yintercept = 16, linetype = 2) + 
+  theme(text = element_text(size = 10))
+```
+
+## Quote
+
+> How you turn dimensions in the <span class = 'red'>data</span> into visual 
+cues for your audience is everything.
+
+
+## Attendance example
+
+```{r}
+attendsummary <- data.frame(year = 2008:2013, 
+                            att = c(97.7, 93.5, 92.6, 96.2, 96.4, 96.7), 
+                            sd = c(0.8, 1.2, 0.9, 0.95, 0.96, 1.2), 
+                            count = c(500, 460, 480, 490, 492, 460))
+qplot(factor(year), att, data = attendsummary, geom = 'bar', stat = 'identity') + 
+  labs(x = "Year", y = "Att. Rate", title = "Attendance Rate in School Over Time") + 
+  theme_dpi()
+
+```
+
+## Iterate
+
+```{r}
+qplot(factor(year), att, data = attendsummary, geom = 'bar', stat = 'identity', 
+      color = I("gray30"), fill = I("gray80")) + 
+  labs(x = "Year", y = "Att. Rate", title = "Attendance Rate in School Over Time") + 
+  theme_dpi() + geom_hline(yintercept = 95, linetype = 2, color = I("red"))
+
+```
+
+## Not bad 
+
+```{r}
+ggplot(attendsummary, aes(x = year, y = att, ymin = att - 1.8*sd, 
+                          ymax = att + 1.8*sd)) + 
+  geom_bar(stat = "identity", color = I("gray30"), fill = I("gray80")) +
+  geom_errorbar(width =0.4, color = I("red")) + ylim(c(0, 100)) + 
+  geom_hline(yintercept = 95, linetype = 2, color = I("red"))
+
+```
+
+
+## Talk Outline
+
+* Problem Statement
+  - Lots of data, lots of demand
+  - Limited time, space, and opportunity
+* Role of Leadership
+  - Be strategic in what you present
+  - Lead your audience -- analysis, not data
+* Tools
+  - Context
+  - Counterfactuals
+  - Simulation
+* Practical
+
+## Slide with R Code and Output | A subtitle
+
+<div class="red2">
+This text is red
+</div>
+
+```{r}
+summary(cars)
+```
+
+## Slide with Plot
+
+```{r, echo=FALSE}
+plot(cars)
+```
+
+## A Simple Table
+
+ Right     Left     Center     Default
+-------     ------ ----------   -------
+     12     12        12            12
+    123     123       123          123
+      1     1          1             1
+
+Table:  Demonstration of simple table syntax.
+
+## A multiline table
+
+-------------------------------------------------------------
+ Centered   Default           Right Left
+  Header    Aligned         Aligned Aligned
+----------- ------- --------------- -------------------------
+   First    row                12.0 Example of a row that
+                                    spans multiple lines.
+
+  Second    row                 5.0 Here's another one. Note
+                                    the blank line between
+                                    rows.
+-------------------------------------------------------------
+
+Table: Here's the caption. It, too, may span
+multiple lines.
+
+
+## R Markdown
+Opinions about data visualization are everywhere and quick search online reveals thousands of resources to learn how to draw bar graphs and when a scatter plot might be effective. While getting the technical details right is important, it is merely a necessary, but not sufficient, condition for driving change. In order to effectively use data in a decision making context, analysts must focus on knowing their audience, knowing the decision space, and leading their audience toward constructive engagement with the data. Using examples from senior leadership discussions at the Wisconsin Department of Public Instruction, this talk will explore how to build capacity in an audience and empower them to make decisions informed by analytics. A particular focus will be taken on the deliberate design choices an analyst must confront in order construct visualizations that are accessible and invite discussion. This includes strategies such as simulation, counterfactual modeling, and selection of context cues to bring the data into a familiar frame for the audience. The session will conclude with a brief discussion of practical advice on technologies, formats, and presentation techniques for different audience types.
+
+
+## Asset {.vcenter}
+
