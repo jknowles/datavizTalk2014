@@ -13,10 +13,11 @@ output:
 
 ```{r knitrsetup,echo=FALSE,eval=TRUE,results="hide",error=FALSE,message=FALSE,warning=FALSE}
 library(knitr)
-opts_chunk$set(fig.width=8,fig.height=5.5,message=FALSE,error=FALSE,warning=FALSE,echo=TRUE,dev=c("svg"),comment=NA,out.width="750px",out.height="550px", fig.align='center')
+opts_chunk$set(fig.width=8,fig.height=5.5,message=FALSE,error=FALSE,warning=FALSE,echo=FALSE,dev=c("png"),comment=NA,out.width="750px",out.height="550px", fig.align='center')
 library(eeptools)
 library(ggplot2)
-library(ggthemes)
+library(png)
+library(grid)
 #require('hexbin')
 #load("data/cache.rda")
 ```
@@ -180,7 +181,10 @@ viewer with information. Sometimes they are self-contained.
 
 ## Summary
 
-![actandstudents](assets/cumlDENS97.png)
+```{r fig.cap = "Density", fig.align='center'}
+img <- readPNG("assets/cumlDENS97.png")
+grid.raster(img, interpolate = TRUE)
+```
 
 
 ## Models
@@ -242,7 +246,11 @@ ggplot(attendsummary, aes(x = year, y = att, ymin = att - 1.8*sd,
 
 ## Simulation
 
+![mathgap](assets/HighMathGapClose.png)
+
 ## Counterfactual Modeling
+
+![racegapgrad](assets/racegapgradFORAPRIL2014.png)
 
 ## Talk Outline
 
@@ -307,10 +315,4 @@ Opinions about data visualization are everywhere and quick search online reveals
 
 
 ## Asset {.vcenter}
-```{r fig.width=7, fig.height=6.5, fig.cap = "EWS Model Fit Plots", fig.align='center'}
-library(png)
-library(grid)
-img <- readPNG("assets/ewsLITplot.png")
-grid.raster(img)
-```
 
